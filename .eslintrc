@@ -1,0 +1,26 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "env": {
+    "mocha": true,
+    "node": true
+  },
+  "rules": {
+    "brace-style": 0,
+    "indent": 0,
+    "camelcase": 0,
+    "comma-spacing": 0,
+    "array-bracket-spacing": 0,
+    "no-var": 0,
+
+    "no-underscore-dangle": 0,
+    comma-dangle: ["error", "never"],
+    "consistent-return": 0,
+    "immutable/no-let": 1,
+    "immutable/no-this": 0,
+    "immutable/no-mutation": 0
+  },
+  "plugins": [
+    "immutable"
+  ]
+}

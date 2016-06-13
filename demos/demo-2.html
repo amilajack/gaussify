@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		initial
+        <canvas id="canvas" width="300" height="300"></canvas>
+        blended
+        <canvas id="offscreen" width="300" height="300"></canvas>
+        <img id="img" hidden width="220" height="277" src="../img/blur.jpg" crossOrigin="Anonymous" />
+        <!-- <img id="img" hidden width="220" height="277" src="../img/forest.jpeg" crossOrigin="Anonymous" /> -->
+
+        <script type="text/javascript" src="../src/context_blender.js"></script>
+        <script type="text/javascript">
+            // Likely an 'offscreen' (not in the DOM) canvas
+            window.onload = function() {
+                const canvas = document.querySelector('#canvas')
+                const anotherCanvas = document.querySelector('#offscreen')
+                const over = canvas.getContext('2d');
+                const under = anotherCanvas.getContext('2d'); // Usually a canvas that is shown on the page
+
+                const image = document.querySelector('#img');
+
+                under.drawImage(image, 0, 0, 300, 300);
+
+                over.fillStyle = '#D8D8D8';
+                over.fillRect(0, 0, 100, 100);
+                over.blendOnto(under, 'overlay');
+            }
+        </script>
+	</body>
+</html>
