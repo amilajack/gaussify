@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "http-server -c0",
-    "test-all": "cross-env NODE_ENV=test npm run lint && npm run build",
+    "test": "cross-env NODE_ENV=test mocha --bail --timeout 20000 --inline-diffs --async-only --growl --compilers js:babel-register --recursive --require ./test/setup.js test/*.spec.js",
+    "test-all": "cross-env NODE_ENV=test npm run lint && npm run test && npm run build",
     "build": "cross-env NODE_ENV=production babel src --out-file lib/gaussify.js && npm run build-web",
     "build-web": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.js --progress --profile --colors --display-error-details",
     "clean": "rm -rf lib",
@@ -25,7 +26,7 @@
     "canvas",
     "gaussian"
   ],
-  "author": "Mario Klingemann",
+  "author": "Amila Welihinda",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/amilajack/gaussify/issues"
@@ -58,6 +59,6 @@
   "dependencies": {
     "context-blender": "github:amilajack/context-blender",
     "dom-to-image": "^2.4.0",
-    "stackblur-canvas": "^1.2.1"
+    "stackblur": "^1.0.0"
   }
 }

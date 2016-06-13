@@ -1,11 +1,11 @@
 {
-  "name": "gaussify-canvas",
+  "name": "gaussify",
   "version": "1.2.0",
   "homepage": "https://github.com/amilajack/gaussify",
   "authors": [
-    "Mario Klingemann"
+    "Amila Welihinda"
   ],
-  "description": "Fast and almost Gaussian blur by Mario Klingemann",
+  "description": "Fast and almost Gaussian blur by Amila Welihinda",
   "main": "lib/gaussify.js",
   "keywords": [
     "gaussify",
@@ -16,9 +16,12 @@
   "license": "MIT",
   "ignore": [
     "node_modules",
+    "benchmarks",
+    "test",
     "src",
-    "demo.html",
-    "Gruntfile.js",
+    "demos",
+    "img",
+    "src",
     "package.json"
   ]
 }
