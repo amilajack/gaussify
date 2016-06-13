@@ -59,6 +59,6 @@
   "dependencies": {
     "context-blender": "github:amilajack/context-blender",
     "dom-to-image": "^2.4.0",
-    "stackblur": "^1.0.0"
+    "stackblur-canvas": "^1.2.1"
   }
 }

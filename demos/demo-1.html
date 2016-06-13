@@ -7,16 +7,12 @@
             html, body {
                 padding: 0;
                 margin: 0;
-        				height: 100vh;
-        				width: 100%;
+				height: 100vh;
+				width: 100%;
                 text-align: center;
                 background: #fff;
                 font-family: Arial, sans-serif;
                 color: #333;
-            }
-
-            img {
-                display: none;
             }
 
             canvas {
@@ -24,95 +20,28 @@
                 box-shadow: 0 0 10px rgba(0, 0, 0, .3);
                 vertical-align: middle;
             }
-
-            div {
-                margin: 20px;
-            }
         </style>
     </head>
     <body>
-        <h1>gaussify Demo</h1>
+        <h1>Gaussify Demo</h1>
         <canvas id="canvas" width="200" height="200"></canvas>
         <div>
-			<div class="rand">
-				WO
-			</div>
-            <input type="range" min="0" max="50" value="0" id="slider" />
-
-            <img src="../img/mount.png" crossOrigin="Anonymous" id="super" width="100px"/>
-            <!-- <img src="../img/forest.jpeg" crossOrigin="Anonymous" onload="downsizeImage(this)" id="super" width="100px"/> -->
-            <!-- <img src="../img/cow.jpeg" alt="" id="super" onload="downsizeImage(this)" width="100%"/> -->
-            <!-- <img src="../img/img.jpeg" alt="" id="img" width="100%"/> -->
+          <input type="range" min="0" max="50" value="0" id="slider" />
+          <img src="../img/mount.png" gaussify crossOrigin="Anonymous" id="super" width="100px"/>
         </div>
-
-		<style media="screen">
-			.rand {
-				position: absolute;
-				top: 100px;
-				width: 212px;
-				height: 71px;
-				background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/building.jpg);
-				background-color: red;
-			}
-		</style>
 
         <script src="../lib/gaussify.min.js"></script>
         <script>
-            // Canvas
-            // Slider
+            var img = document.querySelector('img')
 
-			/**
-			 * @param {string} img     | image source or image element
-			 * @param {number} dwidth  | image source or image element
-			 * @param {number} dheight | image source or image element
-			 */
-			function downsizeImage(img, dwidth = 200, dheight = 200) {
-				window.requestAnimationFrame(() => {
-				    console.time();
+            window.onload = function() {
+                Gaussify.background(document.body, img)
+            };
 
-				    const canvas = document.querySelector('canvas');
-				    const ctx = canvas.getContext('2d');
-
-				    const width = img.width;
-				    const height = img.height;
-				    console.log(width, height);
-
-				    ctx.drawImage(img, 0, 0, dwidth, dheight);
-				    const uri = canvas.toDataURL();
-
-				    console.timeEnd();
-
-					const image = new Image();
-					image.src = uri;
-					console.log(image);
-					image.id = 'moo';
-					document.body.appendChild(image);
-
-					gaussify.image('moo', 'canvas', 0);
-					setBackground();
-
-					const slider = document.getElementById('slider');
-		            slider.addEventListener("mousemove", function() {
-		                gaussify.image('moo', 'canvas', slider.value);
-						setBackground();
-		            }, true);
-				})
-			}
-
-			function setBackground() {
-				const canvas = document.querySelector('canvas');
-
-				const dataUrl = canvas.toDataURL();
-				document.body.style.background = `url(${dataUrl})`;
-				document.body.style['background-repeat'] = 'no-repeat';
-				document.body.style['background-size'] = 'cover';
-				document.body.style['background-position'] = 'center';
-			}
-
-			window.onload = function() {
-				downsizeImage(document.querySelector('img'))
-			}
-
+            const sliderElement = document.getElementById('slider');
+                slider.addEventListener('mousemove', function() {
+                Gaussify.background(document.body, img, sliderElement.value)
+		    }, true);
         </script>
     </body>
 </html>
