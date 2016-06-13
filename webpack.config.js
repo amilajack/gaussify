@@ -17,13 +17,13 @@ export default {
       }
     ]
   },
-  entry: './src/stackblur.js',
+  entry: './browser.js',
   output: {
     path: path.join(__dirname, 'lib'),
-    filename: 'stackblur.min.js',
+    filename: 'gaussify.min.js',
     libraryTarget: 'umd',
-    library: 'StackBlur',
-    umdNamedDefine: 'StackBlur'
+    library: 'Gaussify',
+    umdNamedDefine: 'Gaussify'
   },
   resolve: {
     extensions: ['', '.js'],

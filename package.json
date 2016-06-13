@@ -3,10 +3,13 @@
   "version": "0.0.1",
   "description": "Fast and intuitive lib for blurred UI's",
   "main": "index.js",
+  "browser": {
+    "index.js": "./lib/gaussify.min.js"
+  },
   "scripts": {
     "start": "http-server -c0",
     "test-all": "cross-env NODE_ENV=test npm run lint && npm run build",
-    "build": "cross-env NODE_ENV=production babel src --out-file lib/stackblur.js && npm run build-web",
+    "build": "cross-env NODE_ENV=production babel src --out-file lib/gaussify.js && npm run build-web",
     "build-web": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.js --progress --profile --colors --display-error-details",
     "clean": "rm -rf lib",
     "lint": "cross-env NODE_ENV=test eslint src test",
@@ -14,10 +17,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/flozz/StackBlur.git"
+    "url": "https://github.com/amilajack/gaussify.git"
   },
   "keywords": [
-    "stackblur",
+    "gaussify",
     "blur",
     "canvas",
     "gaussian"
@@ -25,7 +28,7 @@
   "author": "Mario Klingemann",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/flozz/StackBlur/issues"
+    "url": "https://github.com/amilajack/gaussify/issues"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
@@ -53,6 +56,8 @@
     "webpack": "^1.13.1"
   },
   "dependencies": {
-    "dom-to-image": "^2.4.0"
+    "context-blender": "github:amilajack/context-blender",
+    "dom-to-image": "^2.4.0",
+    "stackblur-canvas": "^1.2.1"
   }
 }

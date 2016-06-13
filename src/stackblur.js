@@ -1,10 +1,10 @@
 /*
-    StackBlur - a fast almost Gaussian Blur For Canvas
+    gaussify - a fast almost Gaussian Blur For Canvas
 
     Version:     0.5
     Author:        Mario Klingemann
     Contact:     mario@quasimondo.com
-    Website:    http://www.quasimondo.com/StackBlurForCanvas
+    Website:    http://www.quasimondo.com/gaussifyForCanvas
     Twitter:    @quasimondo
 
     In case you find this class useful - especially in commercial projects -
@@ -12,7 +12,7 @@
     mario@quasimondo.de
 
     Or support me on flattr:
-    https://flattr.com/thing/72791/StackBlur-a-fast-almost-Gaussian-Blur-Effect-for-CanvasJavascript
+    https://flattr.com/thing/72791/gaussify-a-fast-almost-Gaussian-Blur-Effect-for-CanvasJavascript
 
     Copyright (c) 2010 Mario Klingemann
 

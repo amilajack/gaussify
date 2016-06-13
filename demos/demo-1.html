@@ -2,7 +2,7 @@
 
 <html>
     <head>
-        <title>StackBlur Demo</title>
+        <title>gaussify Demo</title>
         <style>
             html, body {
                 padding: 0;
@@ -31,7 +31,7 @@
         </style>
     </head>
     <body>
-        <h1>StackBlur Demo</h1>
+        <h1>gaussify Demo</h1>
         <canvas id="canvas" width="200" height="200"></canvas>
         <div>
 			<div class="rand">
@@ -57,7 +57,7 @@
 			}
 		</style>
 
-        <script src="../lib/stackblur.min.js"></script>
+        <script src="../lib/gaussify.min.js"></script>
         <script>
             // Canvas
             // Slider
@@ -89,12 +89,12 @@
 					image.id = 'moo';
 					document.body.appendChild(image);
 
-					StackBlur.image('moo', 'canvas', 0);
+					gaussify.image('moo', 'canvas', 0);
 					setBackground();
 
 					const slider = document.getElementById('slider');
 		            slider.addEventListener("mousemove", function() {
-		                StackBlur.image('moo', 'canvas', slider.value);
+		                gaussify.image('moo', 'canvas', slider.value);
 						setBackground();
 		            }, true);
 				})

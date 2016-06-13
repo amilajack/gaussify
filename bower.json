@@ -1,14 +1,14 @@
 {
-  "name": "stackblur-canvas",
+  "name": "gaussify-canvas",
   "version": "1.2.0",
-  "homepage": "https://github.com/flozz/StackBlur",
+  "homepage": "https://github.com/amilajack/gaussify",
   "authors": [
     "Mario Klingemann"
   ],
   "description": "Fast and almost Gaussian blur by Mario Klingemann",
-  "main": "lib/stackblur.js",
+  "main": "lib/gaussify.js",
   "keywords": [
-    "stackblur",
+    "gaussify",
     "blur",
     "canvas",
     "gaussian"
