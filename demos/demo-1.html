@@ -3,6 +3,7 @@
 <html>
     <head>
         <title>gaussify Demo</title>
+        <link rel="stylesheet" href="./gaussify.css" media="screen" charset="utf-8">
         <style>
             html, body {
                 padding: 0;
@@ -37,50 +38,29 @@
         <a href="/">Back to demos</a>
 
         <h1>Gaussify Demo</h1>
+
         <canvas hidden id="canvas" width="200" height="200"></canvas>
         <!-- <img src="../img/cow.jpeg" gaussify crossOrigin="Anonymous" id="super" width="300px"/> -->
-        <!-- <img src="../img/forest.jpeg" gaussify crossOrigin="Anonymous" id="super" width="300px"/> -->
-        <img src="../img/mount.png" gaussify crossOrigin="Anonymous" id="super" width="300px"/>
+        <img src="../img/forest.jpeg" gaussify crossOrigin="Anonymous" id="super" width="300px"/>
+        <!-- <img src="../img/mount.png" gaussify crossOrigin="Anonymous" id="super" width="300px"/> -->
         <h3>Original Size: 2400 x 1900, 4.4mb</h3>
 
         <div>
-          <input type="range" min="0" max="50" value="0" id="slider" />
+          <input type="range" min="0" max="60" value="0" id="slider" />
         </div>
 
-        <div class="glass top left"></div>
-        <div class="glass top right"></div>
-        <div class="glass bottom left"></div>
-        <div class="glass bottom right"></div>
-
-        <style media="screen">
-            .glass {
-                background: #D8D8D8;
-                mix-blend-mode: overlay;
-                position: absolute;
-                border-radius: 10px;
-                width: 100px;
-                height: 100px;
-            }
-            .bottom {
-                bottom: 10px;
-            }
-            .top {
-                top: 10px;
-            }
-            .left {
-                left: 10px;
-            }
-            .right {
-                right: 10px;
-            }
-        </style>
+        <div class="glass glass-dark top left"></div>
+        <div class="glass glass-dark top right"></div>
+        <div class="glass glass-dark bottom left"></div>
+        <div class="glass glass-dark bottom right"></div>
 
         <script src="../lib/gaussify.min.js"></script>
         <script>
             var img = document.querySelector('img')
 
             window.onload = function() {
-                gradual();
+                Gaussify.background(document.body, img, sliderElement.value)
+                // gradual();
             };
 
             var sliderElement = document.getElementById('slider');
@@ -90,12 +70,11 @@
 		    }, true);
 
             function gradual() {
-                for (let i = 0; i < 50; i++) {
-
+                for (let i = 0; i < 60; i++) {
                     setTimeout(function () {
                         slider.value = i
                         Gaussify.background(document.body, img, i)
-                    }, 50 * i );
+                    }, 60 * i );
                 }
             }
         </script>

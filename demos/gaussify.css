@@ -1,0 +1,36 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+.glass {
+    background: #D8D8D8;
+    background: white;
+    mix-blend-mode: overlay;
+    position: absolute;
+    border-radius: 10px;
+    width: 100px;
+    height: 100px;
+    z-index: 10;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+.bottom {
+    bottom: 100px;
+}
+.top {
+    top: 100px;
+}
+.left {
+    left: 100px;
+}
+.right {
+    right: 100px;
+}
+.glass-dark,
+.glass,
+.background--dark {
+    /*background: #3D3D3D !important;*/
+}
+body {
+    background: gray;
+}

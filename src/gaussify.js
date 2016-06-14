@@ -1,5 +1,6 @@
 import 'context-blender';
 import StackBlur from 'stackblur-canvas';
+import BackgroundCheck from 'background-check';
 
 
 // const cache = {};
@@ -10,15 +11,19 @@ import StackBlur from 'stackblur-canvas';
  * @return {promise}
  */
 export function background(element, imageSource, radius = 0) {
-  if (!window.some) {
-    window.some = _downsizeImage(_resolveElement(imageSource));
+  if (!window._image_cache_) {
+    window._image_cache_ = _downsizeImage(_resolveElement(imageSource));
   }
 
   return new Promise((resolve) => {
     requestAnimationFrame(() => {
-      const downsizedImageUri = _blur(window.some, radius);
+      const downsizedImageUri = _blur(window._image_cache_, radius);
       resolve(_setBackground(_resolveElement(element), downsizedImageUri));
     });
+
+    setTimeout(() => {
+      _shouldDarken();
+    }, 1000);
   });
 }
 
@@ -43,6 +48,10 @@ function _blur(imageSource, blurRadius) {
   downsizedImage.remove();
 
   return dataUrl;
+}
+
+function _shouldDarken(targets = '.glass') {
+  BackgroundCheck.init({ targets });
 }
 
 /**
@@ -71,7 +80,7 @@ export function _downsizeImage(imgElement, targetWidth = 200, targetHeight = 200
   }
 
   // Downsize
-  ctx.drawImage(imgElement, 0, 0, targetWidth, targetHeight);
+  ctx.drawImage(imgElement, 0, 0, Math.round(targetWidth), Math.round(targetHeight));
   const downsizedImageUri = canvas.toDataURL();
 
   end('_downsizeImage');
@@ -89,10 +98,12 @@ function _resolveElement(element) {
 function _setBackground(element, imageUrl) {
   const elementToStyle = element;
 
-  elementToStyle.style.background = `url(${imageUrl})`;
-  elementToStyle.style['background-repeat'] = 'no-repeat';
-  elementToStyle.style['background-size'] = 'cover';
-  elementToStyle.style['background-position'] = 'center';
+  requestAnimationFrame(() => {
+    elementToStyle.style.background = `url(${imageUrl})`;
+    elementToStyle.style['background-repeat'] = 'no-repeat';
+    elementToStyle.style['background-size'] = 'cover';
+    elementToStyle.style['background-position'] = 'center';
+  });
 }
 
 function start(label) {
