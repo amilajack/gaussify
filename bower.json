@@ -22,6 +22,12 @@
     "demos",
     "img",
     "src",
-    "package.json"
-  ]
+    "package.json",
+    "**/.*",
+    "bower_components",
+    "tests"
+  ],
+  "dependencies": {
+    "Ionicons": "ionicons#^2.0.1"
+  }
 }

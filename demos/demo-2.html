@@ -9,11 +9,11 @@
 
         <div class="glass top left"></div>
         <div class="glass top right"></div>
-        <div class="glass glass-dark bottom left"></div>
+        <div class="glass bottom left"></div>
         <div class="glass bottom right"></div>
 
         <header>
-            Some
+
         </header>
 
         <style media="screen">
@@ -23,28 +23,24 @@
                 height: 100px;
             }
             #background-blur {
-                background-image: url('../img/forest.jpeg');
+                background-image: url('../img/mount.png');
                 background-size: cover;
                 overflow: hidden
                 position: absolute;
                 height: 100vh;
                 width: 100%;
-                -webkit-filter: url('#blur');
-                -moz-filter: url('#blur');
-                filter: url('#blur');
-                -webkit-filter: blur(60px) brightness(80%);
-                -moz-filter: blur(60px) brightness(80%);
-                filter: blur(60px) brightness(80%);
+                -webkit-filter: blur(60px) opacity(90%);
+                -moz-filter: blur(60px) opacity(90%);
+                filter: blur(60px) opacity(90%);
                 will-change: filter;
-
                 transition: all 0.3s ease;
                 z-index: -1;
-                background-color: black;
+                background-color: gray;
             }
             #container {
                 overflow: hidden;
                 position: relative;
-                background-color: #3A3A3A;
+                /*background-color: #3A3A3A;*/
             }
 
             #background-blur:hover .glass {

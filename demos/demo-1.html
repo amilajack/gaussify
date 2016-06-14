@@ -41,7 +41,7 @@
 
         <canvas hidden id="canvas" width="200" height="200"></canvas>
         <!-- <img src="../img/cow.jpeg" gaussify crossOrigin="Anonymous" id="super" width="300px"/> -->
-        <img src="../img/forest.jpeg" gaussify crossOrigin="Anonymous" id="super" width="300px"/>
+        <img src="../img/mount.png" gaussify crossOrigin="Anonymous" id="super" width="300px"/>
         <!-- <img src="../img/mount.png" gaussify crossOrigin="Anonymous" id="super" width="300px"/> -->
         <h3>Original Size: 2400 x 1900, 4.4mb</h3>
 
@@ -49,17 +49,17 @@
           <input type="range" min="0" max="60" value="0" id="slider" />
         </div>
 
-        <div class="glass glass-dark top left"></div>
-        <div class="glass glass-dark top right"></div>
-        <div class="glass glass-dark bottom left"></div>
-        <div class="glass glass-dark bottom right"></div>
+        <div class="glass top left"></div>
+        <div class="glass top right"></div>
+        <div class="glass bottom left"></div>
+        <div class="glass bottom right"></div>
 
         <script src="../lib/gaussify.min.js"></script>
         <script>
             var img = document.querySelector('img')
 
             window.onload = function() {
-                Gaussify.background(document.body, img, sliderElement.value)
+                Gaussify.background(document.body, img, 60)
                 // gradual();
             };
 

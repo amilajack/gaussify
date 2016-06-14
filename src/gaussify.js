@@ -10,20 +10,21 @@ import BackgroundCheck from 'background-check';
  *
  * @return {promise}
  */
-export function background(element, imageSource, radius = 0) {
+export async function background(element, imageSource, radius = 0) {
   if (!window._image_cache_) {
     window._image_cache_ = _downsizeImage(_resolveElement(imageSource));
   }
 
-  return new Promise((resolve) => {
-    requestAnimationFrame(() => {
-      const downsizedImageUri = _blur(window._image_cache_, radius);
-      resolve(_setBackground(_resolveElement(element), downsizedImageUri));
-    });
+  const cachedImage = await window._image_cache_;
 
-    setTimeout(() => {
-      _shouldDarken();
-    }, 1000);
+  // setTimeout(() => {
+  //   _shouldDarken();
+  // }, 1000);
+
+  requestAnimationFrame(async () => {
+    const downsizedBurredImageUri = await _blur(cachedImage, radius);
+    _setBackground(_resolveElement(element), downsizedBurredImageUri);
+    return downsizedBurredImageUri;
   });
 }
 
@@ -34,20 +35,22 @@ export function background(element, imageSource, radius = 0) {
 // }
 
 function _blur(imageSource, blurRadius) {
-  // Temporarily create offscreen image
-  const downsizedImage = new Image();
-  downsizedImage.src = imageSource;
-  downsizedImage.id = 'downsizedImage';
-  document.body.appendChild(downsizedImage);
+  return new Promise(resolve => requestAnimationFrame(() => {
+    // Temporarily create offscreen image
+    const downsizedImage = new Image();
+    downsizedImage.src = imageSource;
+    downsizedImage.id = 'downsizedImage';
+    document.body.appendChild(downsizedImage);
 
-  StackBlur.image('downsizedImage', 'canvas', blurRadius);
+    StackBlur.image('downsizedImage', 'canvas', blurRadius);
 
-  // Get the image uri of downsized image
-  const bluredImageCanvas = _resolveElement('canvas');
-  const dataUrl = bluredImageCanvas.toDataURL();
-  downsizedImage.remove();
+    // Get the image uri of downsized image
+    const bluredImageCanvas = _resolveElement('canvas');
+    const dataUrl = bluredImageCanvas.toDataURL();
+    downsizedImage.remove();
 
-  return dataUrl;
+    resolve(dataUrl);
+  }));
 }
 
 function _shouldDarken(targets = '.glass') {
@@ -58,10 +61,10 @@ function _shouldDarken(targets = '.glass') {
  * @todo: requestAnimationFrame support
  * @todo: calculate if image is worth downsizing
  *
- * @param  {string} imgElement        | <img> element
- * @param  {number} targetWidth       | image source or image element
- * @param  {number} targetHeight      | image source or image element
- * @return {string} downsizedImageUri
+ * @param  {string}  imgElement        | <img> element
+ * @param  {number}  targetWidth       | image source or image element
+ * @param  {number}  targetHeight      | image source or image element
+ * @return {promise} downsizedImageUri
  */
 export function _downsizeImage(imgElement, targetWidth = 200, targetHeight = 200) {
   start('_downsizeImage');
@@ -80,12 +83,16 @@ export function _downsizeImage(imgElement, targetWidth = 200, targetHeight = 200
   }
 
   // Downsize
-  ctx.drawImage(imgElement, 0, 0, Math.round(targetWidth), Math.round(targetHeight));
-  const downsizedImageUri = canvas.toDataURL();
+  return new Promise(resolve => {
+    requestAnimationFrame(() => {
+      ctx.drawImage(imgElement, 0, 0, Math.round(targetWidth), Math.round(targetHeight));
+      const downsizedImageUri = canvas.toDataURL();
 
-  end('_downsizeImage');
+      end('_downsizeImage');
 
-  return downsizedImageUri;
+      resolve(downsizedImageUri);
+    });
+  });
 }
 
 function _resolveElement(element) {

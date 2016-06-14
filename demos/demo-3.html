@@ -1,0 +1,231 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="./gaussify.css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="../node_modules/normalize.css/normalize.css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="../bower_components/ionicons/css/ionicons.css" media="screen" charset="utf-8">
+    </head>
+    <header class="blend background--dark">
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Settings</a>
+        </nav>
+    </header>
+    <body>
+        <!-- <h3><a href="/">Back to demos</a></h3>
+        <h1>Gaussify CSS Demo</h1> -->
+
+        <canvas hidden id="canvas" width="200" height="200"></canvas>
+        <img hidden src="../img/mount.png" gaussify crossOrigin="Anonymous" id="super" width="300px"/>
+
+        <section class="container">
+            <div class="tabs">
+                List 1: blurred
+                <div class="tab tab-1">
+                    <a href="#">Beautiful Scenery</a>
+                </div>
+                <div class="tab tab-1">
+                    <a href="#">Thomas Jefferson’s Monticello</a>
+                </div>
+                <div class="tab tab-1">
+                    <a href="#">University of Virginia</a>
+                </div>
+                <div class="tab tab-1">
+                    <a href="#">The Glass Pallette</a>
+                </div>
+                <div class="tab tab-1">
+                    <a href="#">Carter Mountain Orchard</a>
+                </div>
+            </div>
+            <div class="tabs">
+                List 2: solid
+                <div class="tab tab-2">Beautiful Scenery</div>
+                <div class="tab tab-2">Thomas Jefferson’s Monticello</div>
+                <div class="tab tab-2">University of Virginia</div>
+                <div class="tab tab-2">The Glass Pallette</div>
+                <div class="tab tab-2">Carter Mountain Orchard</div>
+            </div>
+            <div class="tabs">
+                List 3: dark blurred
+                <div class="tab tab-3">Beautiful Scenery</div>
+                <div class="tab tab-3">Thomas Jefferson’s Monticello</div>
+                <div class="tab tab-3">University of Virginia</div>
+                <div class="tab tab-3">The Glass Pallette</div>
+                <div class="tab tab-3">Carter Mountain Orchard</div>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="buttons">
+                <div class="button button-1">
+                    <a class="icon ion-ios-plus"></a>
+                </div>
+                <div class="button button-1">
+                    <a class="icon ion-ios-list"></a>
+                </div>
+            </div>
+        </section>
+
+        <style media="screen">
+            .tabs {
+                display: flex;
+                flex-flow: column;
+                text-align: left;
+            }
+            .tabs .tab {
+                color: white;
+                mix-blend-mode: overlay;
+                cursor: pointer;
+                background: #D8D8D8;
+                padding: 10px;
+                margin: 10px;
+                border-radius: 5px;
+                transition: all 0.2s ease;
+            }
+            .tab:hover {
+                mix-blend-mode: initial;
+                background: white;
+                color: black;
+                padding: 15px;
+                margin: 5px;
+                box-shadow: 0px 6px 12px 0px rgba(0,0,0,0.30);
+            }
+            .tabs .tab.tab-1 a {
+                mix-blend-mode: initial;
+                color: black;
+            }
+            .tabs .tab.tab-2 {
+                mix-blend-mode: initial;
+                background: transparent;
+            }
+            .tabs .tab.tab-2:hover {
+                background: white;
+            }
+            .tabs .tab.tab-3 {
+                background: #4F4F4F;
+            }
+            .tabs .tab.tab-3:hover {
+                background: white;
+            }
+            .blend {
+                mix-blend-mode: overlay;
+                background-color: #D8D8D8;
+                width: 100%;
+            }
+
+            .buttons {
+                display: flex;
+                flex-flow: row;
+                align-items: center;
+                justify-content: center;
+            }
+            .buttons .button {
+                color: white;
+                /*mix-blend-mode: overlay;*/
+                cursor: pointer;
+                background: #D8D8D8;
+                padding: 10px;
+                margin: 10px;
+                border-radius: 5px;
+                transition: all 0.2s ease;
+                position: relative;
+
+                /*background-blend-mode: exclusion;*/
+                background-image: url('../img/mount.png');
+                -webkit-filter: blur(60px);
+                -moz-filter: blur(60px);
+                filter: blur(60px);
+                /*background-position: center;*/
+                /*background-size: cover:*/
+            }
+            .button:hover {
+                /*mix-blend-mode: initial;
+                background: white;
+                color: black;
+                padding: 15px;
+                margin: 5px;
+                box-shadow: 0px 6px 12px 0px rgba(0,0,0,0.30);*/
+            }
+
+            header {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+            }
+
+            section {
+                display: flex;
+                flex-flow: row;
+                width: 100%;
+            }
+
+            a {
+                color: white;
+                text-decoration: none;
+                font-family: Arial, Helvetica, sans-serif
+            }
+            nav a {
+                margin: 0 20px;
+                font-size: 1.8rem;
+            }
+            h1, h2, h3, h4 ,h5, h6 {
+                color: white;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+            html, body {
+                padding: 0;
+                margin: 0;
+				height: 100vh;
+				width: 100%;
+                text-align: center;
+                background: #fff;
+                font-family: Arial, sans-serif;
+                color: #333;
+            }
+            .container {
+                padding: 3rem;
+            }
+            body:after {
+                position: absolute;
+                height: 100px;
+                width: 100px;
+                background: red;
+            }
+        </style>
+
+        <div hidden id="container">
+            <svg id="background-blur" hidden xmlns="http://www.w3.org/2000/svg">
+                <filter id="blur">
+                    <feGaussianBlur stdDeviation="5" />
+                </filter>
+            </svg>
+        </div>
+
+        <script src="../lib/gaussify.min.js"></script>
+        <script src="../node_modules/jquery/dist/jquery.slim.min.js"></script>
+        <script>
+            var img = document.querySelector('img')
+
+            window.onload = function() {
+                Gaussify.background(document.body, img, 60)
+            };
+
+            $('.button').each(function() {
+                const { top, left } = $(this).position();
+                const width = $(this).width();
+                const height = $(this).height();
+                const backgroundPosition = `top ${top}px left ${left}px`
+
+                console.log(backgroundPosition);
+
+                $(this).css({
+                    'background-position': backgroundPosition
+                });
+            });
+        </script>
+    </body>
+</html>
