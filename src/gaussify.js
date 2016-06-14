@@ -1,7 +1,8 @@
 import 'context-blender';
 import StackBlur from 'stackblur-canvas';
 
-const cache = {};
+
+// const cache = {};
 
 /**
  * @todo: Add an event listener on the element, not on window
@@ -14,8 +15,10 @@ export function background(element, imageSource, radius = 0) {
   }
 
   return new Promise((resolve) => {
-    const downsizedImageUri = _blur(window.some, radius);
-    resolve(_setBackground(_resolveElement(element), downsizedImageUri));
+    requestAnimationFrame(() => {
+      const downsizedImageUri = _blur(window.some, radius);
+      resolve(_setBackground(_resolveElement(element), downsizedImageUri));
+    });
   });
 }
 
@@ -37,7 +40,7 @@ function _blur(imageSource, blurRadius) {
   // Get the image uri of downsized image
   const bluredImageCanvas = _resolveElement('canvas');
   const dataUrl = bluredImageCanvas.toDataURL();
-  // bluredImageCanvas.remove();
+  downsizedImage.remove();
 
   return dataUrl;
 }
@@ -56,11 +59,13 @@ export function _downsizeImage(imgElement, targetWidth = 200, targetHeight = 200
 
   const canvas = document.querySelector('canvas');
   const ctx = canvas.getContext('2d');
-  const { width, height } = imgElement;
+  const { naturalWidth, naturalHeight } = imgElement;
+
+  console.log(imgElement);
 
   if (process.env.NODE_ENV !== 'production') {
     console.log('Downsizing from:');
-    console.log({ width, height });
+    console.log({ naturalWidth, naturalHeight });
     console.log('to:');
     console.log({ targetWidth, targetHeight });
   }
@@ -68,7 +73,6 @@ export function _downsizeImage(imgElement, targetWidth = 200, targetHeight = 200
   // Downsize
   ctx.drawImage(imgElement, 0, 0, targetWidth, targetHeight);
   const downsizedImageUri = canvas.toDataURL();
-  // canvas.remove();
 
   end('_downsizeImage');
 

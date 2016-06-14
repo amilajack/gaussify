@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <h3><a href="/">Back to demos</a></h3>
+
+        <div class="glass"></div>
+
+        <style media="screen">
+            body { background: #000; }
+            img { width:367; height:459px; }
+            img.blur {
+                filter: url(#blur);
+                filter: blur(50px);
+                filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+                /*transition: 0.2s linear;*/
+            }
+            img.blur:hover  {
+                filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');
+                /*filter: blur(0px);*/
+            }
+
+            .glass {
+              position: absolute;
+              width: 400px;
+              height: 400px;
+              background-color: white;
+              filter: url(#blur);
+              filter: blur(50px);
+            }
+
+            /* BACKGROUNDS */
+            body {
+              background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/28727/pelican.jpg');
+              background-size: cover;
+            }
+
+            /* LAYOUT */
+            html, body, article, .glass::before {
+              width: 100%;
+              height: 100%;
+              overflow: hidden;
+            }
+
+            .glass {
+              position: relative;
+              width: 300px;
+              height: 300px;
+            }
+
+            .glass::before {
+              z-index: -1;
+              display: block;
+              position: absolute;
+              content: ' ';
+            }
+
+            body {
+              background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/28727/pelican.jpg');
+              background-size: cover;
+            }
+
+            .glass::before {
+              background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/28727/pelican.jpg');
+              -webkit-filter: url('#blur');
+              -webkit-filter: blur(55px);
+              filter: url('#blur');
+              filter: blur(55px);
+              background-size: cover;
+            }
+
+            .glass {
+              background-color: white;
+            }
+        </style>
+
+        <!-- <img src=../img/forest.jpeg>
+        <img src=../img/forest.jpeg class=blur> -->
+
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <filter id="blur">
+                <feGaussianBlur stdDeviation="3" />
+            </filter>
+        </svg>
+    </body>
+</html>

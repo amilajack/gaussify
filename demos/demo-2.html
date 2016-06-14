@@ -1,29 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-	<body>
-		initial
-        <canvas id="canvas" width="300" height="300"></canvas>
-        blended
-        <canvas id="offscreen" width="300" height="300"></canvas>
-        <img id="img" hidden width="220" height="277" src="../img/blur.jpg" crossOrigin="Anonymous" />
-        <!-- <img id="img" hidden width="220" height="277" src="../img/forest.jpeg" crossOrigin="Anonymous" /> -->
+    <body>
+        <h3><a href="/">Back to demos</a></h3>
+        <h1>Gaussify CSS Demo</h1>
 
-        <script type="text/javascript">
-          // Likely an 'offscreen' (not in the DOM) canvas
-          window.onload = function() {
-            const canvas = document.querySelector('#canvas')
-            const anotherCanvas = document.querySelector('#offscreen')
-            const over = canvas.getContext('2d');
-            const under = anotherCanvas.getContext('2d'); // Usually a canvas that is shown on the page
+        <div class="glass top left"></div>
+        <div class="glass top right"></div>
+        <div class="glass bottom left"></div>
+        <div class="glass bottom right"></div>
 
-            const image = document.querySelector('#img');
-
-            under.drawImage(image, 0, 0, 300, 300);
-
-            over.fillStyle = '#D8D8D8';
-            over.fillRect(0, 0, 100, 100);
-            over.blendOnto(under, 'overlay');
-          }
-        </script>
-	</body>
+        <style media="screen">
+            .glass {
+                background: #D8D8D8;
+                background: white;
+                mix-blend-mode: overlay;
+                position: absolute;
+                border-radius: 10px;
+                width: 100px;
+                height: 100px;
+            }
+            .bottom {
+                bottom: 100px;
+            }
+            .top {
+                top: 100px;
+            }
+            .left {
+                left: 100px;
+            }
+            .right {
+                right: 100px;
+            }
+            body {
+                background: gray;
+            }
+            #background-blur {
+                background-image: url('../img/mount.png');
+                background-size: cover;
+                position: absolute;
+                height: 100vh;
+                width: 100%;
+                -webkit-filter: url('#blur');
+                filter: url('#blur');
+                -webkit-filter: blur(0px);
+                filter: blur(0px);
+                will-change: filter;
+                transition: all 0.3s linear;
+                z-index: -1;
+            }
+            #background-blur:hover {
+                -webkit-filter: url('#blur');
+                filter: url('#blur');
+                -webkit-filter: blur(50px);
+                filter: blur(50px);
+            }
+        </style>
+        <svg id="background-blur" hidden xmlns="http://www.w3.org/2000/svg" width="900px" height="900px" viewBox="0 0 1000 1000">
+            <filter id="blur">
+                <feGaussianBlur stdDeviation="10" />
+            </filter>
+        </svg>
+    </body>
 </html>
