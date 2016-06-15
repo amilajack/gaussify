@@ -1,4 +1,8 @@
-## Stack blur
+## Experimental Blur UI Library
+
+## Goal: Cross-Browser Blurs
+Browser support for native blurs is almost non-existent. This project uses canvas as a fallback for blurs and provides native blurs when possible.
+
 
 ## Comparision:
 [https://codepen.io/dudleystorey/pen/mkgyl](https://codepen.io/dudleystorey/pen/mkgyl)
