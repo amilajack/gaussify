@@ -59,13 +59,23 @@
         <section class="container">
             <div class="buttons">
                 <div class="button button-1">
-                    <a class="icon ion-ios-plus"></a>
+                    <div class="button-overlay"></div>
+                    <a class="icon ion-plus-circled"></a>
                 </div>
                 <div class="button button-1">
-                    <a class="icon ion-ios-list"></a>
+                    <div class="button-overlay"></div>
+                    <a class="icon ion-play"></a>
                 </div>
             </div>
         </section>
+
+        <header class="blend background--dark">
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Settings</a>
+            </nav>
+        </header>
 
         <style media="screen">
             .tabs {
@@ -114,38 +124,47 @@
                 width: 100%;
             }
 
+            .icon {
+                line-height: 0rem;
+            }
             .buttons {
                 display: flex;
                 flex-flow: row;
                 align-items: center;
                 justify-content: center;
+                position: relative;
+            }
+            .button-overlay {
+                mix-blend-mode: overlay;
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                border-radius: 5px;
+                margin: auto;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                top: 0;
+                background: white;
+            }
+            .buttons .button * {
+                font-size: 3rem;
             }
             .buttons .button {
                 color: white;
-                /*mix-blend-mode: overlay;*/
                 cursor: pointer;
-                background: #D8D8D8;
                 padding: 10px;
                 margin: 10px;
-                border-radius: 5px;
                 transition: all 0.2s ease;
                 position: relative;
-
-                /*background-blend-mode: exclusion;*/
-                background-image: url('../img/mount.png');
-                -webkit-filter: blur(60px);
-                -moz-filter: blur(60px);
-                filter: blur(60px);
-                /*background-position: center;*/
-                /*background-size: cover:*/
             }
             .button:hover {
-                /*mix-blend-mode: initial;
+                mix-blend-mode: overlay;
                 background: white;
                 color: black;
                 padding: 15px;
                 margin: 5px;
-                box-shadow: 0px 6px 12px 0px rgba(0,0,0,0.30);*/
+                box-shadow: 0px 6px 12px 0px rgba(0,0,0,0.30);
             }
 
             header {
@@ -189,12 +208,6 @@
             .container {
                 padding: 3rem;
             }
-            body:after {
-                position: absolute;
-                height: 100px;
-                width: 100px;
-                background: red;
-            }
         </style>
 
         <div hidden id="container">
@@ -213,19 +226,6 @@
             window.onload = function() {
                 Gaussify.background(document.body, img, 60)
             };
-
-            $('.button').each(function() {
-                const { top, left } = $(this).position();
-                const width = $(this).width();
-                const height = $(this).height();
-                const backgroundPosition = `top ${top}px left ${left}px`
-
-                console.log(backgroundPosition);
-
-                $(this).css({
-                    'background-position': backgroundPosition
-                });
-            });
         </script>
     </body>
 </html>

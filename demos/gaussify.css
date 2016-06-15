@@ -1,33 +1,31 @@
 body {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
+  background: gray;
 }
 .glass {
-    mix-blend-mode: overlay;
-    background-color: #D8D8D8;
-    position: absolute;
-    border-radius: 10px;
-    width: 100px;
-    height: 100px;
-    z-index: 10;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+  mix-blend-mode: overlay;
+  background-color: #D8D8D8;
+  position: absolute;
+  border-radius: 10px;
+  width: 100px;
+  height: 100px;
+  z-index: 10;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
 }
 .bottom {
-    bottom: 100px;
+  bottom: 100px;
 }
 .top {
-    top: 100px;
+  top: 100px;
 }
 .left {
-    left: 100px;
+  left: 100px;
 }
 .right {
-    right: 100px;
+  right: 100px;
 }
 .glass-dark,
 .background--dark {
-    background: #3D3D3D !important;
-}
-body {
-    background: gray;
+  background: #3D3D3D !important;
 }
