@@ -3,6 +3,8 @@
 ## Comparision:
 [https://codepen.io/dudleystorey/pen/mkgyl](https://codepen.io/dudleystorey/pen/mkgyl)
 
+![Demo](https://raw.github.com/amilajack/gaussify/master/img/demo.png)
+
 ## Todo:
 - [ ] Color detection and intelligence
 - [ ] Autoprefixer support
