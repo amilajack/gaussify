@@ -1,6 +1,5 @@
 import StackBlur from 'stackblur-canvas';
 import BackgroundCheck from 'background-check';
-import pica from 'pica';
 
 
 // const cache = {};
@@ -67,7 +66,7 @@ function _shouldDarken(targets = '.glass') {
  * @return {promise} downsizedImageUri
  */
 export function _downsizeImage(imgElement, targetWidth = 200, targetHeight = 200) {
-  _start('_downsizeImage');
+  start('_downsizeImage');
 
   const canvas = document.querySelector('canvas');
   const ctx = canvas.getContext('2d');
@@ -88,7 +87,7 @@ export function _downsizeImage(imgElement, targetWidth = 200, targetHeight = 200
       ctx.drawImage(imgElement, 0, 0, Math.round(targetWidth), Math.round(targetHeight));
       const downsizedImageUri = canvas.toDataURL();
 
-      _end('_downsizeImage');
+      end('_downsizeImage');
 
       resolve(downsizedImageUri);
     });
@@ -113,68 +112,14 @@ function _setBackground(element, imageUrl) {
   });
 }
 
-function _start(label) {
+function start(label) {
   if (process.env.NODE_ENV !== 'production') {
     console.time(label);
   }
 }
 
-function _end(label) {
+function end(label) {
   if (process.env.NODE_ENV !== 'production') {
     console.timeEnd(label);
   }
-}
-
-export function _expDownsize(img, maxSize, callback) {
-  const createCanvas = function createCanvas(width, height) {
-    const canvas = document.createElement('canvas');
-    canvas.width = width;
-    canvas.height = height;
-    return canvas;
-  };
-
-  /**
-   * Takes an img and resizes it so that it's largest size is equal to max size.
-   * Calls callback with the new img object.
-   */
-  const resizeImage = function resizeImage(img, maxSize, callback) {
-    const width = img.width;
-    const height = img.height;
-    if (width <= maxSize && height <= maxSize) {
-      callback(img);
-      return;
-    }
-    const srcCanvas = createCanvas(width, height);
-    let newHeight;
-    let newWidth;
-
-    if (width > height) {
-      newWidth = maxSize;
-      newHeight = (height / width) * maxSize;
-    } else {
-      newWidth = (width / height) * maxSize;
-      newHeight = maxSize;
-    }
-
-    const ctx = srcCanvas.getContext('2d');
-    ctx.drawImage(img, 0, 0);
-
-    const destCanvas = createCanvas(newWidth, newHeight);
-    pica.resizeCanvas(srcCanvas, destCanvas, err => {
-      if (err) {
-        throw err;
-      }
-
-      const imgBlob = destCanvas.toDataURL('image/png');
-      const newImg = document.createElement('img');
-
-      newImg.onload = () => {
-        callback(newImg);
-      };
-
-      newImg.src = imgBlob;
-    });
-  };
-
-  resizeImage(img, maxSize, callback);
 }
