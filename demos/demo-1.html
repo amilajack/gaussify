@@ -1,82 +1,145 @@
 <!doctype html>
-
 <html>
     <head>
-        <title>gaussify Demo</title>
-        <link rel="stylesheet" href="./gaussify.css" media="screen" charset="utf-8">
-        <style>
+        <link rel="stylesheet" href="../node_modules/normalize.css/normalize.css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="../bower_components/ionicons/css/ionicons.css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="./styles/gaussify.css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="./styles/component.css" media="screen" charset="utf-8">
+    </head>
+    <header class="blend background--dark">
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Settings</a>
+        </nav>
+    </header>
+    <body>
+        <!-- <h3><a href="/">Back to demos</a></h3>
+        <h1>Gaussify CSS Demo</h1> -->
+
+        <canvas hidden id="canvas" width="200" height="200"></canvas>
+        <img hidden src="../img/mount.png" gaussify crossOrigin="Anonymous" id="super" width="300px"/>
+
+        <section class="container">
+            <div class="tabs">
+                List 1: blurred
+                <div class="tab tab-1">
+                    <a href="#">Beautiful Scenery</a>
+                </div>
+                <div class="tab tab-1">
+                    <a href="#">Thomas Jefferson’s Monticello</a>
+                </div>
+                <div class="tab tab-1">
+                    <a href="#">University of Virginia</a>
+                </div>
+                <div class="tab tab-1">
+                    <a href="#">The Glass Pallette</a>
+                </div>
+                <div class="tab tab-1">
+                    <a href="#">Carter Mountain Orchard</a>
+                </div>
+            </div>
+            <div class="tabs">
+                List 2: solid
+                <div class="tab tab-2">Beautiful Scenery</div>
+                <div class="tab tab-2">Thomas Jefferson’s Monticello</div>
+                <div class="tab tab-2">University of Virginia</div>
+                <div class="tab tab-2">The Glass Pallette</div>
+                <div class="tab tab-2">Carter Mountain Orchard</div>
+            </div>
+            <div class="tabs">
+                List 3: dark blurred
+                <div class="tab tab-3">Beautiful Scenery</div>
+                <div class="tab tab-3">Thomas Jefferson’s Monticello</div>
+                <div class="tab tab-3">University of Virginia</div>
+                <div class="tab tab-3">The Glass Pallette</div>
+                <div class="tab tab-3">Carter Mountain Orchard</div>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="buttons">
+                <div class="button button-1">
+                    <div class="button-overlay"></div>
+                    <a class="icon ion-plus-circled"></a>
+                </div>
+                <div class="button button-1">
+                    <div class="button-overlay"></div>
+                    <a class="icon ion-play"></a>
+                </div>
+            </div>
+        </section>
+
+        <header class="blend background--dark">
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Settings</a>
+            </nav>
+        </header>
+
+        <style media="screen">
             html, body {
                 padding: 0;
                 margin: 0;
-				height: 100vh;
-				width: 100%;
+                height: 100vh;
+                width: 100%;
                 text-align: center;
                 background: #fff;
                 font-family: Arial, sans-serif;
                 color: #333;
             }
-
-            #slider {
-                margin: 20px;
+            nav a {
+                margin: 0 20px;
+                font-size: 1.8rem;
+            }
+            header {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
             }
 
-            canvas {
-                border: #fff solid 4px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, .3);
-                vertical-align: middle;
+            section {
+                display: flex;
+                flex-flow: row;
+                width: 100%;
+            }
+
+            a {
+                color: white;
+                text-decoration: none;
+                font-family: Arial, Helvetica, sans-serif
+            }
+            .container {
+                padding: 3rem;
+            }
+            h1, h2, h3, h4 ,h5, h6 {
+                color: white;
+            }
+            h1 {
+                font-size: 2.5rem;
             }
         </style>
-    </head>
-    <body>
-        <svg xmlns="http://www.w3.org/2000/svg"  version="1.1">
-          <defs>
-            <filter id="blur">
-              <feGaussianBlur stdDeviation="5"/>
-            </filter>
-          </defs>
-        </svg>
-        <a href="/">Back to demos</a>
 
-        <h1>Gaussify Demo</h1>
-
-        <canvas hidden id="canvas" width="200" height="200"></canvas>
-        <!-- <img src="../img/cow.jpeg" gaussify crossOrigin="Anonymous" id="super" width="300px"/> -->
-        <img src="../img/mount.png" gaussify crossOrigin="Anonymous" id="super" width="300px"/>
-        <!-- <img src="../img/mount.png" gaussify crossOrigin="Anonymous" id="super" width="300px"/> -->
-        <h3>Original Size: 2400 x 1900, 4.4mb</h3>
-
-        <div>
-          <input type="range" min="0" max="60" value="0" id="slider" />
+        <div hidden id="container">
+            <svg id="background-blur" hidden xmlns="http://www.w3.org/2000/svg">
+                <filter id="blur">
+                    <feGaussianBlur stdDeviation="5" />
+                </filter>
+            </svg>
         </div>
 
-        <div class="glass top left"></div>
-        <div class="glass top right"></div>
-        <div class="glass bottom left"></div>
-        <div class="glass bottom right"></div>
-
         <script src="../lib/gaussify.min.js"></script>
+        <script src="../node_modules/jquery/dist/jquery.slim.min.js"></script>
         <script>
             var img = document.querySelector('img')
 
             window.onload = function() {
-                Gaussify.background(document.body, img, 60)
-                // gradual();
+                setTimeout(function () {
+                    Gaussify.background(document.body, img, 60)
+                }, 0);
             };
-
-            var sliderElement = document.getElementById('slider');
-
-            slider.addEventListener('mousemove', function() {
-                if (sliderElement.value) Gaussify.background(document.body, img, sliderElement.value)
-		    }, true);
-
-            function gradual() {
-                for (let i = 0; i < 60; i++) {
-                    setTimeout(function () {
-                        slider.value = i
-                        Gaussify.background(document.body, img, i)
-                    }, 60 * i );
-                }
-            }
         </script>
     </body>
 </html>

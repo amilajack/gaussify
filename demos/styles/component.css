@@ -1,0 +1,92 @@
+/**
+ * Component specific
+ */
+ 
+.tabs {
+    display: flex;
+    flex-flow: column;
+    text-align: left;
+}
+.tabs .tab {
+    color: white;
+    mix-blend-mode: overlay;
+    cursor: pointer;
+    background: #D8D8D8;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+.tab:hover {
+    mix-blend-mode: initial;
+    background: white;
+    color: black;
+    padding: 15px;
+    margin: 5px;
+    box-shadow: 0px 6px 12px 0px rgba(0,0,0,0.30);
+}
+.tabs .tab.tab-1 a {
+    mix-blend-mode: initial;
+    color: black;
+}
+.tabs .tab.tab-2 {
+    mix-blend-mode: initial;
+    background: transparent;
+}
+.tabs .tab.tab-2:hover {
+    background: white;
+}
+.tabs .tab.tab-3 {
+    background: #4F4F4F;
+}
+.tabs .tab.tab-3:hover {
+    background: white;
+}
+.blend {
+    mix-blend-mode: overlay;
+    background-color: #D8D8D8;
+    width: 100%;
+}
+
+.icon {
+    line-height: 0rem;
+}
+.buttons {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.button-overlay {
+    mix-blend-mode: overlay;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    border-radius: 5px;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: white;
+}
+.buttons .button * {
+    font-size: 3rem;
+}
+.buttons .button {
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    margin: 10px;
+    transition: all 0.2s ease;
+    position: relative;
+}
+.button:hover {
+    mix-blend-mode: overlay;
+    background: white;
+    color: black;
+    padding: 15px;
+    margin: 5px;
+    box-shadow: 0px 6px 12px 0px rgba(0,0,0,0.30);
+}
