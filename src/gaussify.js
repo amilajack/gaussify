@@ -1,4 +1,3 @@
-import 'context-blender';
 import StackBlur from 'stackblur-canvas';
 import BackgroundCheck from 'background-check';
 

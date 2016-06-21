@@ -2,7 +2,8 @@
 <html>
     <head>
         <title>gaussify Demo</title>
-        <link rel="stylesheet" href="./styles/gaussify.css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="./styles/demo.css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="./styles/component.css" media="screen" charset="utf-8">
         <style>
             html, body {
                 padding: 0;
@@ -13,10 +14,6 @@
                 background: #fff;
                 font-family: Arial, sans-serif;
                 color: #333;
-            }
-
-            #slider {
-                margin: 20px;
             }
 
             canvas {
@@ -36,6 +33,10 @@
         </svg>
         <a href="/">Back to demos</a>
 
+        <div>
+          <input type="range" min="0" max="60" value="0" id="slider" />
+        </div>
+
         <h1>Gaussify Demo</h1>
 
         <canvas hidden id="canvas" width="200" height="200"></canvas>
@@ -43,10 +44,6 @@
         <img src="../img/mount.png" gaussify crossOrigin="Anonymous" id="super" width="300px"/>
         <!-- <img src="../img/mount.png" gaussify crossOrigin="Anonymous" id="super" width="300px"/> -->
         <h3>Original Size: 2400 x 1900, 4.4mb</h3>
-
-        <div>
-          <input type="range" min="0" max="60" value="0" id="slider" />
-        </div>
 
         <div class="glass top left"></div>
         <div class="glass top right"></div>

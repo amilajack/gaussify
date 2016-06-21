@@ -1,20 +1,21 @@
 <!doctype html>
 <html>
     <head>
-        <link rel="stylesheet" href="./styles/gaussify.css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="./styles/demo.css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="./styles/component.css" media="screen" charset="utf-8">
     </head>
     <body>
         <!-- <h3><a href="/">Back to demos</a></h3>
         <h1>Gaussify CSS Demo</h1> -->
 
+        <div>
+          <input type="range" min="0" max="60" value="0" id="slider" />
+        </div>
+
         <div class="glass top left"></div>
         <div class="glass top right"></div>
         <div class="glass bottom left"></div>
         <div class="glass bottom right"></div>
-
-        <header>
-
-        </header>
 
         <style media="screen">
             header {
@@ -55,5 +56,21 @@
                 </filter>
             </svg>
         </div>
+
+        <script type="text/javascript" src="../node_modules/jquery/dist/jquery.slim.min.js"></script>
+        <script type="text/javascript">
+            var sliderElement = document.getElementById('slider');
+
+            slider.addEventListener('mousemove', function() {
+                console.log(sliderElement.value);
+                if (sliderElement.value) {
+                    $('#background-blur').css({
+                        '-webkit-filter': `blur(${sliderElement.value}px) opacity(90%)`,
+                        '-moz-filter': `blur(${sliderElement.value}px) opacity(90%)`,
+                        'filter': `blur(${sliderElement.value}px) opacity(90%)`
+                    })
+                }
+            }, true);
+        </script>
     </body>
 </html>

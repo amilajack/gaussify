@@ -1,7 +1,7 @@
 /**
  * Component specific
  */
- 
+
 .tabs {
     display: flex;
     flex-flow: column;
@@ -89,4 +89,19 @@
     padding: 15px;
     margin: 5px;
     box-shadow: 0px 6px 12px 0px rgba(0,0,0,0.30);
+}
+
+.glass-dark,
+.background--dark {
+  background: #3D3D3D !important;
+}
+.glass {
+  mix-blend-mode: overlay;
+  background-color: #D8D8D8;
+  position: absolute;
+  border-radius: 10px;
+  width: 100px;
+  height: 100px;
+  z-index: 10;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
 }

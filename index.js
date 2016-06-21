@@ -1,1 +1,1 @@
-module.exports = require('./lib/gaussify');
+module.exports = require('./src/gaussify');

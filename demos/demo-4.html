@@ -3,8 +3,51 @@
     <head>
         <meta charset="utf-8">
         <title>Demo 4</title>
+        <link rel="stylesheet" href="./styles/demo.css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="./styles/component.css" media="screen" charset="utf-8">
     </head>
     <body>
+        <div>
+          <input type="range" min="0" max="100" value="0" id="slider" />
+        </div>
 
+        <div class="glass top left"></div>
+        <div class="glass top right"></div>
+        <div class="glass bottom left"></div>
+        <div class="glass bottom right"></div>
+
+        <img id="image" width="100%" src="../img/mount.png" />
     </body>
+
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.slim.min.js"></script>
+    <script src="../node_modules/glfx.js__temp/lib/glfx.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+            console.time();
+
+            // convert the image to a texture
+            var image = document.getElementById('image');
+            var canvas = fx.canvas();
+            var texture = canvas.texture(image);
+            var sliderElement = document.getElementById('slider');
+
+            sliderElement.addEventListener('mousemove', function() {
+                console.log(sliderElement.value);
+
+                if (sliderElement.value) {
+                    // apply the ink filter
+                    canvas.draw(texture).triangleBlur(sliderElement.value).update();
+
+                    // replace the image with the canvas
+                    image.parentNode.insertBefore(canvas, image);
+
+                    requestAnimationFrame(() => {
+                        image.parentNode.removeChild(image);
+                    });
+
+                    console.time();
+                }
+            }, true);
+        };
+    </script>
 </html>

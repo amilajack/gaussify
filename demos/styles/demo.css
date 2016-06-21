@@ -1,0 +1,18 @@
+body {
+  padding: 0;
+  margin: 0;
+  background: gray;
+  overflow: hidden;
+}
+.bottom {
+  bottom: 100px;
+}
+.top {
+  top: 100px;
+}
+.left {
+  left: 100px;
+}
+.right {
+  right: 100px;
+}

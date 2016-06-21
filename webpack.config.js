@@ -9,6 +9,7 @@ export default {
         include: [
           path.resolve(__dirname, 'src')
         ],
+        exclude: /node_modules/,
         loader: 'babel-loader'
       },
       {
@@ -17,7 +18,7 @@ export default {
       }
     ]
   },
-  entry: './browser.js',
+  entry: './index.js',
   output: {
     path: path.join(__dirname, 'lib'),
     filename: 'gaussify.min.js',
