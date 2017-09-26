@@ -30,3 +30,8 @@ Using backdrop filter (Safari support only)
     -webkit-backdrop-filter: saturate(180%) blur(20px);
 }
 ```
+
+
+## Related
+* [glsl-fast-gaussian-blur](https://github.com/Jam3/glsl-fast-gaussian-blur)
+* [StackBlur](https://github.com/flozz/StackBlur)
