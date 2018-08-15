@@ -1,5 +1,7 @@
 ## Experimental Blur UI Library
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/amilajack/gaussify.svg)](https://greenkeeper.io/)
+
 ## Goal: Cross-Browser Blurs
 Browser support for native blurs is almost non-existent. This project uses canvas as a fallback for blurs and provides native blurs when possible.
 
