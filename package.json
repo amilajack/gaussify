@@ -52,7 +52,7 @@
     "mocha": "^3.5.3",
     "normalize.css": "^7.0.0",
     "uglifyify": "^4.0.4",
-    "webpack": "^3.6.0"
+    "webpack": "5.70.0"
   },
   "dependencies": {
     "background-check": "github:amilajack/background-check",
